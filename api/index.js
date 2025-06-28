@@ -1,13 +1,25 @@
 export default function handler(req, res) {
-  res.setHeader('Content-Type', 'text/event-stream');
-  res.setHeader('Cache-Control', 'no-cache');
-  res.setHeader('Connection', 'keep-alive');
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive',
+  });
 
-  const data = JSON.stringify([
-    {"Categoría":"Enterizos","Producto":"Enterizo","Cantidad":5,"Precio Total":127000,"Precio por Unidad":25400},
-    {"Categoría":"Batolas","Producto":"Kimono","Cantidad":10,"Precio Total":384000,"Precio por Unidad":38400}
-  ]);
+  const payload = {
+    name: "Buscar Productos",
+    description: "Conecta con Google Sheets y devuelve productos para mostrar en el bot.",
+    parameters: {
+      type: "object",
+      properties: {
+        query: {
+          type: "string",
+          description: "Lo que el usuario está buscando, como 'pijamas' o 'camisetas'."
+        }
+      },
+      required: ["query"]
+    }
+  };
 
-  res.write(`data: ${data}\n\n`);
+  res.write(`data: ${JSON.stringify(payload)}\n\n`);
   res.end();
 }
