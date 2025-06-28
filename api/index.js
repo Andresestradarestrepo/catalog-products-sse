@@ -20,8 +20,5 @@ export default function handler(req, res) {
     }
   };
 
-  res.write(`event: tool\r\ndata: ${JSON.stringify(payload)}\r\n\r\n`);
-
-  // Mantener viva la conexión
-  setInterval(() => {}, 1000);
+  res.write(`event: tool\ndata: ${JSON.stringify(payload)}\n\n`);
 }
