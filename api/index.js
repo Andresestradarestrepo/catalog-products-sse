@@ -20,6 +20,6 @@ export default function handler(req, res) {
     }
   };
 
-  res.write(`data: ${JSON.stringify(payload)}\n\n`);
+  res.write(`event: tool\ndata: ${JSON.stringify(payload)}\n\n`);
   res.end();
 }
