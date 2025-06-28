@@ -21,4 +21,5 @@ export default function handler(req, res) {
   };
 
   res.write(`event: tool\ndata: ${JSON.stringify(payload)}\n\n`);
+  res.end();
 }
